@@ -6,18 +6,18 @@ import java.util.function.Supplier;
 
 public interface DependentVarProvider {
 
-    DependentVar<List<Optional<String>>> observeVars(String... constantNames);
+    DependentVar<List<Optional<String>>> observeVars(String... varNames);
 
-    default DependentVar<String> observeConstant(String constantName) {
-        return observeConstant(constantName, () -> null);
+    default DependentVar<String> observeVal(String varName) {
+        return observeVal(varName, () -> null);
     }
 
-    default DependentVar<String> observeConstant(String constantName, Supplier<String> defaultValue) {
-        return this.<String>observeVars(constantName).map(l -> l.get(0).orElseGet(defaultValue));
+    default DependentVar<String> observeVal(String varName, Supplier<String> defaultValue) {
+        return this.<String>observeVars(varName).map(l -> l.get(0).orElseGet(defaultValue));
     }
 
-    default DependentVar<Optional<String>> observeOptional(String constantName) {
-        return this.<Optional<String>>observeVars(constantName).map(l -> l.get(0));
+    default DependentVar<Optional<String>> observeOptional(String varName) {
+        return this.<Optional<String>>observeVars(varName).map(l -> l.get(0));
     }
 
     DependentVar.DepVar2<Optional<String>, Optional<String>> observe(String name1, String name2);

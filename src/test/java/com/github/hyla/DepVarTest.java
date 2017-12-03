@@ -23,7 +23,7 @@ public class DepVarTest {
     private BeanUsingDepVars beanUsingDepVars;
 
     @Test
-    public void testConstants() {
+    public void testValues() {
         dependentVarContext.setValue("first", "1");
         dependentVarContext.setValue("second", "2");
         dependentVarContext.setValue("third", "3");

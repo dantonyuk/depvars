@@ -43,11 +43,11 @@ public class DependentVarContext implements DependentVarProvider {
 //        dependentVars.get(key).forEach(RegisteredVar::invalidate);
     }
 
-    private RegisteredVar<Optional<String>> getPrimaryVar(String constantName) {
-        return primaryVars.computeIfAbsent(constantName, name -> {
+    private RegisteredVar<Optional<String>> getPrimaryVar(String varName) {
+        return primaryVars.computeIfAbsent(varName, name -> {
             RegisteredVar<Optional<String>> var = new RegisteredVar<>(
                     () -> Optional.ofNullable(varValues.get(name)));
-            varSources.add(var, constantName);
+            varSources.add(var, varName);
             return var;
         });
     }
