@@ -3,13 +3,12 @@ package com.github.hyla.util;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
-import java.util.WeakHashMap;
+import java.util.HashSet;
 import java.util.function.Function;
 
 public class WeakKeyMultiMap<K, V> extends AbstractMultiMap<K, V> {
 
-    private static Function<Object, Set<Object>> EMPTY_SET = unused ->
-            Collections.newSetFromMap(new WeakHashMap<>());
+    private static Function<Object, Set<Object>> EMPTY_SET = unused -> new HashSet<>();
 
     @Override
     protected Map<K, Set<V>> createMap() {
